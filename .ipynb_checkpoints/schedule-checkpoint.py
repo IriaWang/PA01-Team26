@@ -57,5 +57,5 @@ class Schedule():
         return ({c['description'] for c in courses if phrase in c['description']})
     
     def custom_Filter(self, phrase):
-        return ({c for c in courses for d in c if phrase in d})
+        return ({c for c in courses for d in c if phrase in c[d]})
  
