@@ -43,7 +43,7 @@ def Tiancheng_filter(phrase, subj):
 
 # find only remote courses in a certain subject
 def Jason_filter(subjct):
-    return ([c for c in subject(subjct) if 'remote' in c['details']])
+    return ({c for c in subject(subjct) if 'remote' in c['details']})
     
 
 terms = {c['term'] for c in schedule.courses}
