@@ -40,6 +40,10 @@ def description(desc):
 # find all courses above a certain level in a certain subject
 def Tiancheng_filter(phrase, subj):
     return ({c for c in subject(subj) if c ['coursenum'] > phrase})
+
+# find only remote courses in a certain subject
+def Jason_filter(subjct):
+    return ([c for c in subject(subjct) if 'remote' in c['details']])
     
 
 terms = {c['term'] for c in schedule.courses}
