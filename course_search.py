@@ -44,6 +44,10 @@ def Tiancheng_filter(phrase, subj):
 # find only remote courses in a certain subject
 def Jason_filter(subjct):
     return ({c for c in subject(subjct) if 'remote' in c['details']})
+
+# find all courses of a certain subject that does not meet on a specified day
+def Iria_filter(day, subj):
+    return ({c for c in subject(subj) if c['time'] != [] and day not in c['time'][0]['days']})
     
 
 terms = {c['term'] for c in schedule.courses}
