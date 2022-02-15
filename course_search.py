@@ -35,7 +35,7 @@ def title(title):
     return ({c for c in courses if title in c['name']})
 
 def description(desc):
-    return ({c for c in courses if title in c['desc']})
+    return ({c for c in courses if desc in c['desc']})
 
 # find all courses above a certain level in a certain subject
 def Tiancheng_filter(phrase, subj):
