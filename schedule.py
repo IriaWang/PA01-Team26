@@ -51,11 +51,12 @@ class Schedule():
             return self
         
     def title(self, phrase):
-        return ({c['name'] for c in courses if phrase in c['name']})
+        return ({c for c in courses if phrase in c['name']})
     
     def description(self, phrase):
-        return ({c['description'] for c in courses if phrase in c['description']})
+        return ({c for c in courses if phrase in c['description']})
     
-    def custom_Filter(self, phrase):
-        return ({c for c in courses for d in c if phrase in c[d]})
+    # filters by term
+    def term(self, term):
+        return ({c for c in courses if c['term'] == term})
  
