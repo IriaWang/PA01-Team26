@@ -51,12 +51,12 @@ class Schedule():
             return self
         
     def title(self, phrase):
-        return ({c for c in courses if phrase in c['name']})
+        return ({c for c in self.courses if phrase in c['name']})
     
     def description(self, phrase):
-        return ({c for c in courses if phrase in c['description']})
+        return ({c for c in self.ourses if phrase in c['description']})
     
-    # filters by term
-    def term(self, term):
-        return ({c for c in courses if c['term'] == term})
+    # filters by status
+    def status(self, status):
+        return ({c for c in self.courses if c['status_text'] == status})
  

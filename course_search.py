@@ -19,23 +19,23 @@ instructor (filter by instructor)
 subject (filter by subject, e.g. COSI, or LALS)
 title  (filter by phrase in title)
 description (filter by phrase in description)
-timeofday (filter by day and time, e.g. meets at 11 on Wed)
+status (filter by status, e.g. Open)
 '''
 
 def coursenum_filter(num):
-    return ({c for c in courses if c['coursenum'] == num})
+    return ({c for c in schedule.courses if c['coursenum'] == num})
 
 def instructor(instr):
-    return ({c for c in courses if instr in c['instructor']})
+    return ({c for c in schedule.courses if instr in c['instructor']})
 
 def subject(subj):
-    return ({c for c in courses if c['subject'] == subj})
+    return ({c for c in schedule.courses if c['subject'] == subj})
 
 def title(title):
-    return ({c for c in courses if title in c['name']})
+    return ({c for c in schedule.courses if title in c['name']})
 
 def description(desc):
-    return ({c for c in courses if desc in c['desc']})
+    return ({c for c in schedule.courses if desc in c['desc']})
 
 # find all courses above a certain level in a certain subject
 def Tiancheng_filter(phrase, subj):
@@ -75,6 +75,15 @@ def topmenu():
         elif command in ['s','subject']:
             subject = input("enter a subject:")
             schedule = schedule.subject([subject])
+        elif command in ['title']:
+            subject = input("enter a title phrase:")
+            schedule = schedule.subject([subject])
+        elif command in ['description']:
+            subject = input("enter a description phrase:")
+            schedule = schedule.subject([subject])
+        elif command in ['status']:
+            subject = input("enter a status:")
+            schedule = schedule.subject([subject])
         else:
             print('command',command,'is not supported')
             continue
@@ -94,4 +103,3 @@ def print_course(course):
 
 if __name__ == '__main__':
     topmenu()
-
