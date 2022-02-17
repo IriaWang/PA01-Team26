@@ -52,6 +52,7 @@ class Schedule():
 
     # filter by sort
     def sort(self, field):
+        '''sorts'''
         if field == 'subject':
             return Schedule(sorted(self.courses, key = lambda course: course['subject']))
         else:
@@ -60,13 +61,16 @@ class Schedule():
 
     # filters by title
     def title(self, phrase):
+        '''filters by title'''
         return Schedule([c for c in self.courses if phrase in c['name']])
-    
+
     # filters by description
     def description(self, phrase):
+        '''filters by description'''
         return Schedule([c for c in self.courses if phrase in c['description']])
-    
+
     # filters by status
     def status(self, status):
+        '''filters by status'''
         return Schedule([c for c in self.courses if c['status_text'] == status])
- 
+
