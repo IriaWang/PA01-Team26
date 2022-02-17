@@ -9,14 +9,14 @@ class Schedule():
     '''
     Schedule represent a list of Brandeis classes with operations for filtering
     '''
-    def __init__(self, courses=()):
+    def __init__(self, courses = ()):
         ''' courses is a tuple of the courses being offered '''
         self.courses = courses
 
     def load_courses(self):
         ''' load_courses reads the course data from the courses.json file'''
         print('getting archived regdata from file')
-        with open("courses20-21.json","r",encoding='utf-8') as jsonfile:
+        with open("courses20-21.json", "r", encoding = 'utf-8') as jsonfile:
             courses = json.load(jsonfile)
         for course in courses:
             course['instructor'] = tuple(course['instructor'])
@@ -47,7 +47,7 @@ class Schedule():
         if field == 'subject':
             return Schedule(sorted(self.courses, key = lambda course: course['subject']))
         else:
-            print("can't sort by "+str(field)+" yet")
+            print("can't sort by " + str(field) + " yet")
             return self
         
     def title(self, phrase):
