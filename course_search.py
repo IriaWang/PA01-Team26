@@ -117,9 +117,10 @@ def print_course(course):
           course['name'], course['term'], course['instructor'])
 
 if __name__ == '__main__':
-#    course = tiancheng_filter(100, 'COSI')
-#    print(course)
-    topmenu()
+    course = jason_filter('COSI')
+    print(course)
+    # topmenu()
 
 
+# comment for video
 ####### Random comment for video
