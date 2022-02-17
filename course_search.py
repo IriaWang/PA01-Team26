@@ -4,11 +4,11 @@ students search for courses they might want to take at Brandeis
 '''
 
 from schedule import Schedule
-import sys
+#import sys
 
 schedule = Schedule()
 schedule.load_courses()
-schedule = schedule.enrolled(range(5,1000)) # eliminate courses with no students
+schedule = schedule.enrolled(range(5, 1000)) # eliminate courses with no students
 
 TOP_LEVEL_MENU = '''
 quit
@@ -23,32 +23,37 @@ status (filter by status, e.g. Open)
 '''
 
 def coursenum_filter(num):
+    '''filters by course number'''
     return ({c for c in schedule.courses if c['coursenum'] == num})
 
 def instructor(instr):
+    '''filters by instructor'''
     return ({c for c in schedule.courses if instr in c['instructor']})
 
 def subject(subj):
+    '''filters by subject'''
     return ({c for c in schedule.courses if c['subject'] == subj})
 
 def title(title):
+    '''filters by title'''
     return ({c for c in schedule.courses if title in c['name']})
 
 def description(desc):
+    '''filters by description'''
     return ({c for c in schedule.courses if desc in c['desc']})
 
-# find all courses above a certain level in a certain subject
-def Tiancheng_filter(phrase, subj):
-    return ({c for c in subject(subj) if c ['coursenum'] > phrase})
+def tiancheng_filter(phrase, subj):
+    '''filters all courses above a certain level in a certain subject'''
+    return ({c for c in subject(subj) if c['coursenum'] > phrase})
 
-# find only remote courses in a certain subject
-def Jason_filter(subjct):
+def jason_filter(subjct):
+    '''filters only remote courses in a certain subject'''
     return ({c for c in subject(subjct) if 'remote' in c['details']})
 
-# find all courses of a certain subject that does not meet on a specified day
-def Iria_filter(day, subj):
+def iria_filter(day, subj):
+    '''filters all courses of a certain subject that does not meet on a specified day'''
     return ({c for c in subject(subj) if c['time'] != [] and day not in c['time'][0]['days']})
-    
+
 
 terms = {c['term'] for c in schedule.courses}
 
@@ -57,19 +62,19 @@ def topmenu():
     topmenu is the top level loop of the course search app
     '''
     global schedule
-    while True:         
+    while True:
         command = input(">> (h for help) ")
-        if command =='quit':
+        if command == 'quit':
             return
-        elif command in ['h', 'help']:
+        if command in ['h', 'help']:
             print(TOP_LEVEL_MENU)
             print('-' * 40 + '\n\n')
             continue
-        elif command in ['r', 'reset']:
+        if command in ['r', 'reset']:
             schedule.load_courses()
-            schedule = schedule.enrolled(range(5,1000))
+            schedule = schedule.enrolled(range(5, 1000))
             continue
-        elif command in ['t', 'term']:
+        if command in ['t', 'term']:
             term = input("enter a term:" + str(terms) + ":")
             schedule = schedule.term([term]).sort('subject')
         elif command in ['s', 'subject']:
@@ -96,7 +101,7 @@ def topmenu():
 
 def print_course(course):
     '''
-    print_course prints a brief description of the course 
+    print_course prints a brief description of the course
     '''
     print(course['subject'], course['coursenum'], course['section'],
           course['name'], course['term'], course['instructor'])
