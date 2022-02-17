@@ -119,11 +119,4 @@ def print_course(course):
 if __name__ == '__main__':
 #    course = tiancheng_filter(100, 'COSI')
 #    print(course)
-    # topmenu()
-    schedule = iria_filter('f', 'COSI')
-    print("courses has", len(schedule.courses), 'elements', end="\n\n")
-    print('here are the first 10')
-    for course in schedule.courses[:10]:
-        print(course['subject'], course['coursenum'], course['section'], \
-            course['name'], course['term'], course['instructor'], course['times'])
-    print('\n' * 3)
+    topmenu()
