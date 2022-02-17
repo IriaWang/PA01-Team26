@@ -22,14 +22,17 @@ description (filter by phrase in description)
 status (filter by status, e.g. Open)
 '''
 
+# Jason
 def coursenum_filter(num):
     '''filters by course number'''
     return ([c for c in schedule.courses if c['coursenum'] == num])
 
+# Jason
 def instructor(instr):
     '''filters by instructor'''
     return ([c for c in schedule.courses if instr in c['instructor']])
 
+# Jason
 def subject(subj):
     '''filters by subject'''
     return ([c for c in schedule.courses if c['subject'] == subj])
@@ -48,7 +51,7 @@ def description(desc):
 def tiancheng_filter(phrase, subj):
     '''filters all courses above a certain enrollment level in certain subject'''
     return ([c for c in subject(subj) if c['enrolled'] > phrase])
-
+# Jason
 def jason_filter(subjct):
     '''filters only remote courses in a certain subject'''
     return ([c for c in subject(subjct) if 'remote' in c['details']])
