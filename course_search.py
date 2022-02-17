@@ -59,20 +59,20 @@ def topmenu():
     global schedule
     while True:         
         command = input(">> (h for help) ")
-        if command=='quit':
+        if command =='quit':
             return
-        elif command in ['h','help']:
+        elif command in ['h', 'help']:
             print(TOP_LEVEL_MENU)
-            print('-'*40+'\n\n')
+            print('-' * 40 + '\n\n')
             continue
-        elif command in ['r','reset']:
+        elif command in ['r', 'reset']:
             schedule.load_courses()
             schedule = schedule.enrolled(range(5,1000))
             continue
         elif command in ['t', 'term']:
-            term = input("enter a term:"+str(terms)+":")
+            term = input("enter a term:" + str(terms) + ":")
             schedule = schedule.term([term]).sort('subject')
-        elif command in ['s','subject']:
+        elif command in ['s', 'subject']:
             subject = input("enter a subject:")
             schedule = schedule.subject([subject])
         elif command in ['title']:
@@ -85,21 +85,21 @@ def topmenu():
             subject = input("enter a status:")
             schedule = schedule.status(subject)
         else:
-            print('command',command,'is not supported')
+            print('command', command, 'is not supported')
             continue
 
-        print("courses has",len(schedule.courses),'elements',end="\n\n")
+        print("courses has", len(schedule.courses), 'elements', end="\n\n")
         print('here are the first 10')
         for course in schedule.courses[:10]:
             print_course(course)
-        print('\n'*3)
+        print('\n' * 3)
 
 def print_course(course):
     '''
     print_course prints a brief description of the course 
     '''
-    print(course['subject'],course['coursenum'],course['section'],
-          course['name'],course['term'],course['instructor'])
+    print(course['subject'], course['coursenum'], course['section'],
+          course['name'], course['term'], course['instructor'])
 
 if __name__ == '__main__':
     topmenu()
