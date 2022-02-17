@@ -10,7 +10,7 @@ class Schedule():
     Schedule represent a list of Brandeis classes with operations for filtering
     '''
     # constructor
-    def __init__(self, courses = ()):
+    def __init__(self, courses=()):
         ''' courses is a tuple of the courses being offered '''
         self.courses = courses
 
@@ -18,7 +18,7 @@ class Schedule():
     def load_courses(self):
         ''' load_courses reads the course data from the courses.json file'''
         print('getting archived regdata from file')
-        with open("courses20-21.json", "r", encoding = 'utf-8') as jsonfile:
+        with open("courses20-21.json", "r", encoding='utf-8') as jsonfile:
             courses = json.load(jsonfile)
         for course in courses:
             course['instructor'] = tuple(course['instructor'])
