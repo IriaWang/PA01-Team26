@@ -6,9 +6,9 @@ students search for courses they might want to take at Brandeis
 from schedule import Schedule
 #import sys
 
-SCHEDULE = Schedule()
-SCHEDULE.load_courses()
-SCHEDULE = SCHEDULE.enrolled(range(5, 1000)) # eliminate courses with no students
+schedule = Schedule()
+schedule.load_courses()
+schedule = schedule.enrolled(range(5, 1000)) # eliminate courses with no students
 
 TOP_LEVEL_MENU = '''
 quit
@@ -25,27 +25,27 @@ status (filter by status, e.g. Open)
 # Jason
 def coursenum_filter(num):
     '''filters by course number'''
-    return ([c for c in SCHEDULE.courses if c['coursenum'] == num])
+    return ([c for c in schedule.courses if c['coursenum'] == num])
 
 # Jason
 def instructor(instr):
     '''filters by instructor'''
-    return ([c for c in SCHEDULE.courses if instr in c['instructor']])
+    return ([c for c in schedule.courses if instr in c['instructor']])
 
 # Jason
 def subject(subj):
     '''filters by subject'''
-    return ([c for c in SCHEDULE.courses if c['subject'] == subj])
+    return ([c for c in schedule.courses if c['subject'] == subj])
 
 # Tiancheng
 def title(title):
     '''filters by title'''
-    return ([c for c in SCHEDULE.courses if title in c['name']])
+    return ([c for c in schedule.courses if title in c['name']])
 
 # Tiancheng
 def description(desc):
     '''filters by description'''
-    return ([c for c in SCHEDULE.courses if desc in c['desc']])
+    return ([c for c in schedule.courses if desc in c['desc']])
 
 # Tiancheng
 def tiancheng_filter(phrase, subj):
@@ -62,13 +62,13 @@ def iria_filter(day, subj):
     return ([c for c in subject(subj) if c['times'] != [] and day not in c['times'][0]['days']])
 
 
-terms = {c['term'] for c in SCHEDULE.courses}
+terms = {c['term'] for c in schedule.courses}
 
 def topmenu():
     '''
     topmenu is the top level loop of the course search app
     '''
-    global SCHEDULE
+    global schedule
     while True:
         command = input(">> (h for help) ")
         if command == 'quit':
@@ -78,31 +78,31 @@ def topmenu():
             print('-' * 40 + '\n\n')
             continue
         if command in ['r', 'reset']:
-            SCHEDULE.load_courses()
-            SCHEDULE = SCHEDULE.enrolled(range(5, 1000))
+            schedule.load_courses()
+            schedule = schedule.enrolled(range(5, 1000))
             continue
         if command in ['t', 'term']:
             term = input("enter a term:" + str(terms) + ":")
-            SCHEDULE = SCHEDULE.term([term]).sort('subject')
+            schedule = schedule.term([term]).sort('subject')
         elif command in ['s', 'subject']:
             subject = input("enter a subject:")
-            SCHEDULE = SCHEDULE.subject([subject])
+            schedule = schedule.subject([subject])
         elif command in ['title']:
             subject = input("enter a title phrase:")
-            SCHEDULE = SCHEDULE.title(subject)
+            schedule = schedule.title(subject)
         elif command in ['description']:
             subject = input("enter a description phrase:")
-            SCHEDULE = SCHEDULE.description(subject)
+            schedule = schedule.description(subject)
         elif command in ['status']:
             subject = input("enter a status:")
-            SCHEDULE = SCHEDULE.status(subject)
+            schedule = schedule.status(subject)
         else:
             print('command', command, 'is not supported')
             continue
 
-        print("courses has", len(SCHEDULE.courses), 'elements', end="\n\n")
+        print("courses has", len(schedule.courses), 'elements', end="\n\n")
         print('here are the first 10')
-        for course in SCHEDULE.courses[:10]:
+        for course in schedule.courses[:10]:
             print_course(course)
         print('\n' * 3)
 
