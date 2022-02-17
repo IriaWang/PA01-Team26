@@ -67,7 +67,7 @@ class Schedule():
     # filters by description
     def description(self, phrase):
         '''filters by description'''
-        return Schedule([c for c in self.courses if phrase in c['description']])
+        return Schedule([course for course in self.courses if phrase in course['description']])
 
     # filters by status
     def status(self, status):
