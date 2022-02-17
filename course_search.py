@@ -34,16 +34,19 @@ def subject(subj):
     '''filters by subject'''
     return ([c for c in schedule.courses if c['subject'] == subj])
 
+# Tiancheng 
 def title(title):
     '''filters by title'''
     return ([c for c in schedule.courses if title in c['name']])
 
+# Tiancheng 
 def description(desc):
     '''filters by description'''
     return ([c for c in schedule.courses if desc in c['desc']])
 
+# Tiancheng 
 def tiancheng_filter(phrase, subj):
-    '''filters all courses above a certain level in a certain subject'''
+    '''filters all courses above a certain enrollment level in certain subject'''
     return ([c for c in subject(subj) if c['enrolled'] > phrase])
 
 def jason_filter(subjct):
@@ -52,7 +55,7 @@ def jason_filter(subjct):
 
 def iria_filter(day, subj):
     '''filters all courses of a certain subject that does not meet on a specified day'''
-    return ([c for c in subject(subj) if c['time'] != [] and day not in c['time'][0]['days']])
+    return ([c for c in subject(subj) if c['times'] != [] and day not in c['times'][0]['days']])
 
 
 terms = {c['term'] for c in schedule.courses}
