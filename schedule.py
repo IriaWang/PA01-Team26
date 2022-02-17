@@ -59,6 +59,7 @@ class Schedule():
             print("can't sort by " + str(field) + " yet")
             return self
 
+    # Tiancheng 
     # filters by course title
     def title(self, phrase):
         '''filters by title'''
@@ -70,7 +71,6 @@ class Schedule():
         '''filters by description'''
         return Schedule([course for course in self.courses if phrase in course['description']])
 
-    # Tiancheng 
     # filters by course status
     def status(self, status):
         '''filters by status'''
