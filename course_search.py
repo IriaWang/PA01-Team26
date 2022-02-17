@@ -77,13 +77,13 @@ def topmenu():
             schedule = schedule.subject([subject])
         elif command in ['title']:
             subject = input("enter a title phrase:")
-            schedule = schedule.subject([subject])
+            schedule = schedule.title(subject)
         elif command in ['description']:
             subject = input("enter a description phrase:")
-            schedule = schedule.subject([subject])
+            schedule = schedule.description(subject)
         elif command in ['status']:
             subject = input("enter a status:")
-            schedule = schedule.subject([subject])
+            schedule = schedule.status(subject)
         else:
             print('command',command,'is not supported')
             continue
