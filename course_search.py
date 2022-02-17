@@ -24,35 +24,35 @@ status (filter by status, e.g. Open)
 
 def coursenum_filter(num):
     '''filters by course number'''
-    return ({c for c in schedule.courses if c['coursenum'] == num})
+    return ([c for c in schedule.courses if c['coursenum'] == num])
 
 def instructor(instr):
     '''filters by instructor'''
-    return ({c for c in schedule.courses if instr in c['instructor']})
+    return ([c for c in schedule.courses if instr in c['instructor']])
 
 def subject(subj):
     '''filters by subject'''
-    return ({c for c in schedule.courses if c['subject'] == subj})
+    return ([c for c in schedule.courses if c['subject'] == subj])
 
 def title(title):
     '''filters by title'''
-    return ({c for c in schedule.courses if title in c['name']})
+    return ([c for c in schedule.courses if title in c['name']])
 
 def description(desc):
     '''filters by description'''
-    return ({c for c in schedule.courses if desc in c['desc']})
+    return ([c for c in schedule.courses if desc in c['desc']])
 
 def tiancheng_filter(phrase, subj):
     '''filters all courses above a certain level in a certain subject'''
-    return ({c for c in subject(subj) if c['coursenum'] > phrase})
+    return ([c for c in subject(subj) if c['enrolled'] > phrase])
 
 def jason_filter(subjct):
     '''filters only remote courses in a certain subject'''
-    return ({c for c in subject(subjct) if 'remote' in c['details']})
+    return ([c for c in subject(subjct) if 'remote' in c['details']])
 
 def iria_filter(day, subj):
     '''filters all courses of a certain subject that does not meet on a specified day'''
-    return ({c for c in subject(subj) if c['time'] != [] and day not in c['time'][0]['days']})
+    return ([c for c in subject(subj) if c['time'] != [] and day not in c['time'][0]['days']])
 
 
 terms = {c['term'] for c in schedule.courses}
@@ -107,4 +107,6 @@ def print_course(course):
           course['name'], course['term'], course['instructor'])
 
 if __name__ == '__main__':
+#    course = tiancheng_filter(100, 'COSI')
+#    print(course)
     topmenu()
