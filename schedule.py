@@ -72,5 +72,5 @@ class Schedule():
     # filters by status
     def status(self, status):
         '''filters by status'''
-        return Schedule([c for c in self.courses if c['status_text'] == status])
+        return Schedule([course for course in self.courses if course['status_text'] == status])
 
